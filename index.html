@@ -3,12 +3,125 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Rock Paper Scissors</title>
+    <title>Rock/Paper/Scissors</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
 </head>
 <body>
-    
+<script>
+
+//Initial scores
+let yourScore = 0;
+let computerScore = 0;
+let round = 1
+
+
+// Player selection
+let userSelection = () => {
+    let userPlay = prompt("Rock/Paper/Scissors").toLowerCase();
+}
+
+
+//Computer selection 
+
+
+let computerPlay = () => {
+    let x = Math.random()*3;
+
+    if ( x > 0 && x < 1) {
+        return "Rock";
+    } else if ( x > 1 && x < 2) {
+        return "Paper";
+    } else {
+        return "Scissors";
+    }
+};
+
+
+//Win
+
+let caseWin = (playerSelection,computerSelection) => {
+   yourScore += 3;
+   
+   console.log("You win! " + playerSelection + " beats " + computerSelection);
+   console.log(" ");
+   console.log("Scores:");
+   console.log("Your score: " + yourScore);
+   console.log("Computer's Score: " + computerScore);
+   console.log(" "); 
+   
+} 
+
+//Tie 
+
+let caseTie = (playerSelection,computerSelection) => {
+    yourScore += 1;
+    computerScore += 1;
+   
+   console.log("It's a tie!");
+   console.log(" ");
+   console.log("Scores:");
+   console.log("Your score: " + yourScore);
+   console.log("Computer's Score: " + computerScore);
+   console.log(" "); 
+   
+}
+
+//Lose
+
+let caseLose = (playerSelection,computerSelection) => {
+   computerScore += 3;
+   
+   console.log("You lost! " + computerSelection + " beats " + playerSelection);
+   console.log(" ");
+   console.log("Scores:");
+   console.log("Your score: " + yourScore);
+   console.log("Computer's Score: " + computerScore);
+   console.log(" "); 
+   
+} 
+
+
+//Round 
+
+let gameRound = (playerSelection, computerSelection) => {
+console.log("Round: " + round );
+console.log(" ");
+console.log("Computer chose: " + computerSelection);
+console.log(" ");
+
+if ( playerSelection == "rock" && computerSelection == "Rock") {
+    caseTie(playerSelection,computerSelection);
+}
+ else if ( playerSelection == "rock" && computerSelection == "Paper") {
+    caseLose(playerSelection,computerSelection);
+}
+ else if (playerSelection == "rock" && computerSelection == "Scissors") {
+          caseWin(playerSelection,computerSelection);
+} 
+ else if (playerSelection == "paper" && computerSelection == "Rock") {
+          caseWin(playerSelection,computerSelection);
+}
+ else if ( playerSelection == "paper" && computerSelection == "Paper") {
+    caseTie(playerSelection,computerSelection);
+}
+ else if ( playerSelection == "paper" && computerSelection == "Scissors") {
+    caseLose(playerSelection,computerSelection);
+} 
+ else if ( playerSelection == "scissors" && computerSelection == "Rock") {
+    caseLose(playerSelection,computerSelection);
+}
+ else if (playerSelection == "scissors" && computerSelection == "Paper") {
+          caseWin(playerSelection,computerSelection);
+}
+ else if ( playerSelection == "scissors" && computerSelection == "Scissors") {
+    caseTie(playerSelection,computerSelection);
+} 
+round += 1;
+}
+
+gameRound("scissors","Scissors");
+
+
+</script>    
 </body>
 </html>
